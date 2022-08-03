@@ -1,0 +1,2 @@
+youtube-dl==2021.12.17
+youtube-search==2.1.1
