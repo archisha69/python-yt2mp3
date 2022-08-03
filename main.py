@@ -57,7 +57,7 @@ def dlThread(window, objVideo:dict):
 
 if __name__ == "__main__":
     e = os.system("ffmpeg" + " > nul" if os.name == "nt" else " > /dev/null")
-    e1 = os.system("./ffmpeg" + " > nul" if os.name == "nt" else  "> /dev/null")
+    e1 = os.system("./ffmpeg" + " > nul" if os.name == "nt" else  " > /dev/null")
     if e != 0 and e1 != 0:
         f = downloadFile("https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip" if os.name == "nt" else "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz")
         if f.endswith(".zip"):
