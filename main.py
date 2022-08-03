@@ -56,8 +56,8 @@ def dlThread(window, objVideo:dict):
     exit(0)
 
 if __name__ == "__main__":
-    e = os.system("ffmpeg")
-    e1 = os.system("./ffmpeg")
+    e = os.system("ffmpeg" + " > nul" if os.name == "nt" else " > /dev/null")
+    e1 = os.system("./ffmpeg" + " > nul" if os.name == "nt" else  "> /dev/null")
     if e != 0 and e1 != 0:
         f = downloadFile("https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip" if os.name == "nt" else "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz")
         if f.endswith(".zip"):
@@ -109,10 +109,6 @@ if __name__ == "__main__":
             root.mainloop()
     
     btn = Button(window, text="Submit", command=radioClicked)
-    rad1.grid(column=0, row=0)
-    rad2.grid(column=0, row=1)
-    rad3.grid(column=0, row=2)
-    rad4.grid(column=0, row=3)
-    rad5.grid(column=0, row=4)
+    for i in range(1, 6): globals()[f"rad{i}"].grid(column=0, row=i-1)
     btn.grid(column=0, row=5)
     window.mainloop()
