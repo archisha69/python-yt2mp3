@@ -1,10 +1,4 @@
-import os
-import sys
-import pip
-import tarfile
-import zipfile
-import requests
-import threading
+import os, sys, pip, tarfile, zipfile, requests, threading
 
 from tkinter import *
 from tkinter.ttk import *
@@ -38,8 +32,7 @@ def downloadFile(url):
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
         with open(local_filename, 'wb') as f:
-            for chunk in r.iter_content(chunk_size=8192): 
-                f.write(chunk)
+            for chunk in r.iter_content(chunk_size=8192):  f.write(chunk)
     return local_filename
 
 def dlThread(window, objVideo:dict):
@@ -60,10 +53,8 @@ if __name__ == "__main__":
     e1 = os.system("./ffmpeg" + " > nul" if os.name == "nt" else  " > /dev/null")
     if e != 0 and e1 != 0:
         f = downloadFile("https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip" if os.name == "nt" else "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz")
-        if f.endswith(".zip"):
-            with zipfile.ZipFile(f"./{f}") as zipref: zipref.extractall(".")
-        else:
-            with tarfile.TarFile(f"./{f}") as tarref: tarref.extractall(".")
+        if f.endswith(".zip"): with zipfile.ZipFile(f"./{f}") as zipref: zipref.extractall(".")
+        else: with tarfile.TarFile(f"./{f}") as tarref: tarref.extractall(".")
     window = Tk()
     window.title("youtube to mp3 downloader")
     window.geometry("350x50")
